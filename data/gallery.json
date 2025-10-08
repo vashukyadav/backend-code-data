@@ -1,0 +1,226 @@
+[
+  {
+    "id": 1,
+    "title": "Portrait Session",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait.jpg",
+    "description": "Professional portrait photography capturing natural expressions"
+  },
+  {
+    "id": 2,
+    "title": "Couple Moments",
+    "category": "COUPLE PORTRAIT",
+    "imageUrl": "/uploads/couple.jpg",
+    "description": "Intimate couple portrait session in natural lighting"
+  },
+  {
+    "id": 3,
+    "title": "Wedding Ceremony",
+    "category": "WEDDING",
+    "imageUrl": "/uploads/wedding.jpg",
+    "description": "Beautiful wedding ceremony moments captured"
+  },
+  {
+    "id": 5,
+    "title": "Black & White Art",
+    "category": "MONOCHROME",
+    "imageUrl": "/uploads/monochrome.jpg",
+    "description": "Artistic monochrome photography"
+  },
+  {
+    "id": 6,
+    "title": "Fashion Editorial",
+    "category": "EDITORIAL",
+    "imageUrl": "/uploads/editorial.jpg",
+    "description": "High-fashion editorial photography session"
+  },
+  {
+    "id": 7,
+    "title": "Pre Wedding Shoot",
+    "category": "PRE WEDDING",
+    "imageUrl": "/uploads/prewedding.jpg",
+    "description": "Romantic pre-wedding photography session"
+  },
+  {
+    "id": 8,
+    "title": "Classic Portrait",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-classic.jpg",
+    "description": "Timeless classic portrait with elegant lighting and composition"
+  },
+  {
+    "id": 9,
+    "title": "Artistic Vision",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-artistic.jpg",
+    "description": "Creative artistic portrait with unique perspective and mood"
+  },
+  {
+    "id": 10,
+    "title": "Candid Moments",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-candid.jpg",
+    "description": "Natural candid portrait capturing authentic emotions"
+  },
+  {
+    "id": 11,
+    "title": "Dramatic Light",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-dramatic.jpg",
+    "description": "Bold dramatic portrait with striking light and shadow play"
+  },
+  {
+    "id": 12,
+    "title": "Natural Beauty",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-natural.jpg",
+    "description": "Soft natural light portrait showcasing genuine beauty"
+  },
+  {
+    "id": 13,
+    "title": "Studio Perfection",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-studio.jpg",
+    "description": "Professional studio portrait with perfect lighting setup"
+  },
+  {
+    "id": 14,
+    "title": "Vintage Charm",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-vintage.jpg",
+    "description": "Nostalgic vintage-style portrait with timeless appeal"
+  },
+  {
+    "id": 15,
+    "title": "Modern Edge",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-modern.jpg",
+    "description": "Contemporary modern portrait with clean lines and bold composition"
+  },
+  {
+    "id": 16,
+    "title": "Lifestyle Story",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-lifestyle.jpg",
+    "description": "Authentic lifestyle portrait capturing real moments and personality"
+  },
+  {
+    "id": 17,
+    "title": "Fashion Forward",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/portrait-fashion.jpg",
+    "description": "High-fashion portrait with editorial styling and dramatic poses"
+  },
+  {
+    "id": 18,
+    "title": "Romantic Connection",
+    "category": "COUPLE PORTRAIT",
+    "imageUrl": "/uploads/couple-romantic.jpg",
+    "description": "Intimate romantic couple portrait with soft lighting"
+  },
+  {
+    "id": 19,
+    "title": "Candid Love",
+    "category": "COUPLE PORTRAIT",
+    "imageUrl": "/uploads/couple-candid.jpg",
+    "description": "Natural candid moments between couples"
+  },
+  {
+    "id": 20,
+    "title": "Outdoor Romance",
+    "category": "COUPLE PORTRAIT",
+    "imageUrl": "/uploads/couple-outdoor.jpg",
+    "description": "Beautiful outdoor couple session in natural setting"
+  },
+  {
+    "id": 21,
+    "title": "Studio Elegance",
+    "category": "COUPLE PORTRAIT",
+    "imageUrl": "/uploads/couple-studio.jpg",
+    "description": "Professional studio couple portrait with elegant styling"
+  },
+  {
+    "id": 22,
+    "title": "Sacred Vows",
+    "category": "WEDDING",
+    "imageUrl": "/uploads/wedding-ceremony.jpg",
+    "description": "Beautiful wedding ceremony capturing sacred moments"
+  },
+  {
+    "id": 23,
+    "title": "Reception Joy",
+    "category": "WEDDING",
+    "imageUrl": "/uploads/wedding-reception.jpg",
+    "description": "Joyful wedding reception moments and celebrations"
+  },
+  {
+    "id": 24,
+    "title": "Bridal Beauty",
+    "category": "WEDDING",
+    "imageUrl": "/uploads/wedding-bridal.jpg",
+    "description": "Stunning bridal portraits on the wedding day"
+  },
+  {
+    "id": 25,
+    "title": "Party Vibes",
+    "category": "COCKTAIL",
+    "imageUrl": "/uploads/cocktail-party.jpg",
+    "description": "Vibrant cocktail party atmosphere and energy"
+  },
+  {
+    "id": 26,
+    "title": "Elegant Soirée",
+    "category": "COCKTAIL",
+    "imageUrl": "/uploads/cocktail-elegant.jpg",
+    "description": "Sophisticated elegant cocktail event photography"
+  },
+  {
+    "id": 27,
+    "title": "Artistic Expression",
+    "category": "MONOCHROME",
+    "imageUrl": "/uploads/monochrome-artistic.jpg",
+    "description": "Creative artistic black and white photography"
+  },
+  {
+    "id": 28,
+    "title": "Classic Monochrome",
+    "category": "MONOCHROME",
+    "imageUrl": "/uploads/monochrome-classic.jpg",
+    "description": "Timeless classic black and white portrait"
+  },
+  {
+    "id": 29,
+    "title": "Fashion Statement",
+    "category": "EDITORIAL",
+    "imageUrl": "/uploads/editorial-fashion.jpg",
+    "description": "Bold fashion editorial with striking composition"
+  },
+  {
+    "id": 30,
+    "title": "Modern Editorial",
+    "category": "EDITORIAL",
+    "imageUrl": "/uploads/editorial-modern.jpg",
+    "description": "Contemporary modern editorial photography"
+  },
+  {
+    "id": 31,
+    "title": "Romantic Journey",
+    "category": "PRE WEDDING",
+    "imageUrl": "/uploads/prewedding-romantic.jpg",
+    "description": "Romantic pre-wedding session capturing love story"
+  },
+  {
+    "id": 32,
+    "title": "Nature's Backdrop",
+    "category": "PRE WEDDING",
+    "imageUrl": "/uploads/prewedding-outdoor.jpg",
+    "description": "Beautiful outdoor pre-wedding shoot in natural setting"
+  },
+  {
+    "id": 33,
+    "title": "MAA REVA",
+    "category": "PORTRAIT",
+    "imageUrl": "/uploads/1759915466916-image.png",
+    "description": "SAMITI"
+  }
+]
