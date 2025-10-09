@@ -11,7 +11,10 @@ const PORT = process.env.PORT || 5000;
 const JWT_SECRET = 'your-secret-key';
 const ADMIN_PASSWORD = 'admin123';
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://frontend-code-rouge.vercel.app'],
+  credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
