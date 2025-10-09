@@ -12,7 +12,7 @@ const JWT_SECRET = 'your-secret-key';
 const ADMIN_PASSWORD = 'admin123';
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://frontend-code-rouge.vercel.app'],
+  origin: ['http://localhost:3000', 'https://frontend-code-umber.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
