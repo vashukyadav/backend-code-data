@@ -12,8 +12,14 @@ const JWT_SECRET = 'your-secret-key';
 const ADMIN_PASSWORD = 'admin123';
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://frontend-code-umber.vercel.app'],
-  credentials: true
+  origin: [
+    'http://localhost:3000',
+    'https://your-frontend-domain.netlify.app',
+    'https://your-frontend-domain.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
