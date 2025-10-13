@@ -23,8 +23,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:3001',
-    'https://flat-renting-frontend.onrender.com',
-    'https://backend-code-1-nctw.onrender.com'
+    process.env.FRONTEND_URL || 'https://your-frontend-url.netlify.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
