@@ -1,196 +1,210 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const multer = require('multer');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
-const Gallery = require('./models/Gallery');
-const Contact = require('./models/Contact');
+require("dotenv").config({ path: './.env' });
+
+// Force override MONGO_URI
+process.env.MONGO_URI = "mongodb+srv://vashuuyadav08_db_user:XbhTDJqbX9E1fnOF@photography-portfolio.3xmu9a2.mongodb.net/photography-portfolio?retryWrites=true&w=majority";
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const multer = require("multer");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const Gallery = require("./models/Gallery");
+const Contact = require("./models/Contact");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const ADMIN_PASSWORD = 'admin123';
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
+const ADMIN_PASSWORD = "admin123";
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ MongoDB Connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+mongoose
+  .connect(process.env.MONGO_URI, {
+    ssl: true,
+    tlsAllowInvalidCertificates: true,
+    connectTimeoutMS: 30000,
+    socketTimeoutMS: 30000
+  })
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-    process.env.FRONTEND_URL || 'https://your-frontend-url.netlify.app'
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  optionsSuccessStatus: 200
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      process.env.FRONTEND_URL,
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    optionsSuccessStatus: 200,
+  })
+);
+
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/uploads/');
+    cb(null, "public/uploads/");
   },
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + '-' + file.originalname;
+    const uniqueName = Date.now() + "-" + file.originalname;
     cb(null, uniqueName);
-  }
+  },
 });
 const upload = multer({ storage });
 
 const authenticateAdmin = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
+  const token = req.header("Authorization")?.replace("Bearer ", "");
   if (!token) {
-    return res.status(401).json({ error: 'Access denied' });
+    return res.status(401).json({ error: "Access denied" });
   }
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.admin = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ error: 'Invalid token' });
+    res.status(401).json({ error: "Invalid token" });
   }
 };
 
-
-
 // Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "OK",
     timestamp: new Date().toISOString(),
-    mongodb: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'
+    mongodb:
+      mongoose.connection.readyState === 1 ? "Connected" : "Disconnected",
   });
 });
 
+
+
 // API Routes
-app.get('/api/gallery', async (req, res) => {
+app.get("/api/gallery", async (req, res) => {
   try {
     const gallery = await Gallery.find();
     // Map _id to id for frontend compatibility
-    const mappedGallery = gallery.map(photo => ({
+    const mappedGallery = gallery.map((photo) => ({
       ...photo.toObject(),
-      id: photo._id
+      id: photo._id,
     }));
     res.json(mappedGallery);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to load gallery data' });
+    res.status(500).json({ error: "Failed to load gallery data" });
   }
 });
 
-app.get('/api/gallery/:id', async (req, res) => {
+app.get("/api/gallery/:id", async (req, res) => {
   try {
     const photo = await Gallery.findById(req.params.id);
     if (!photo) {
-      return res.status(404).json({ error: 'Photo not found' });
+      return res.status(404).json({ error: "Photo not found" });
     }
     res.json(photo);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to load photo data' });
+    res.status(500).json({ error: "Failed to load photo data" });
   }
 });
 
-app.post('/api/admin/login', (req, res) => {
+app.post("/api/admin/login", (req, res) => {
   const { password } = req.body;
   if (password === ADMIN_PASSWORD) {
-    const token = jwt.sign({ admin: true }, JWT_SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ admin: true }, JWT_SECRET, { expiresIn: "24h" });
     res.json({ token });
   } else {
-    res.status(401).json({ error: 'Invalid password' });
+    res.status(401).json({ error: "Invalid password" });
   }
 });
 
-app.post('/api/admin/gallery', authenticateAdmin, upload.single('image'), async (req, res) => {
+app.post("/api/admin/gallery", upload.single("image"), async (req, res) => {
   try {
     const { title, category, description } = req.body;
-    
-    const newPhoto = new Gallery({
-      title,
-      category,
-      imageUrl: `/uploads/${req.file.filename}`,
-      description
-    });
-    
-    await newPhoto.save();
-    res.json(newPhoto);
+    const imageUrl = req.file.path; // Cloudinary URL
+    const gallery = new Gallery({ title, category, description, imageUrl });
+    await gallery.save();
+    res.status(201).json(gallery);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to add photo' });
+    res.status(500).json({ message: error.message });
   }
 });
 
-app.delete('/api/admin/gallery/:id', authenticateAdmin, async (req, res) => {
+app.delete("/api/admin/gallery/:id", authenticateAdmin, async (req, res) => {
   try {
     const photo = await Gallery.findById(req.params.id);
-    
+
     if (!photo) {
-      return res.status(404).json({ error: 'Photo not found' });
+      return res.status(404).json({ error: "Photo not found" });
     }
-    
-    const imagePath = path.join(__dirname, 'public', photo.imageUrl);
-    const fs = require('fs');
-    
+
+    const imagePath = path.join(__dirname, "public", photo.imageUrl);
+    const fs = require("fs");
+
     if (fs.existsSync(imagePath)) {
       fs.unlinkSync(imagePath);
     }
-    
+
     await Gallery.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Photo deleted successfully' });
+    res.json({ message: "Photo deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete photo' });
+    res.status(500).json({ error: "Failed to delete photo" });
   }
 });
 
 // Contact form API
-app.post('/api/contact', async (req, res) => {
+app.post("/api/contact", async (req, res) => {
   try {
-    console.log('Contact form submission:', req.body);
+    console.log("Contact form submission:", req.body);
     const { name, email, phone, message } = req.body;
-    
+
     if (!name || !email || !message) {
-      return res.status(400).json({ error: 'Name, email, and message are required' });
+      return res
+        .status(400)
+        .json({ error: "Name, email, and message are required" });
     }
-    
+
     const newContact = new Contact({
       name,
       email,
-      phone: phone || '',
-      message
+      phone: phone || "",
+      message,
     });
-    
+
     const savedContact = await newContact.save();
-    console.log('Contact saved:', savedContact._id);
-    res.json({ message: 'Contact form submitted successfully', id: savedContact._id });
+    console.log("Contact saved:", savedContact._id);
+    res.json({
+      message: "Contact form submitted successfully",
+      id: savedContact._id,
+    });
   } catch (error) {
-    console.error('Contact form error:', error);
-    res.status(500).json({ error: 'Failed to submit contact form: ' + error.message });
+    console.error("Contact form error:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to submit contact form: " + error.message });
   }
 });
 
 // Get all contacts (admin only)
-app.get('/api/admin/contacts', authenticateAdmin, async (req, res) => {
+app.get("/api/admin/contacts", authenticateAdmin, async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });
     // Map isRead to read for frontend compatibility
-    const mappedContacts = contacts.map(contact => ({
+    const mappedContacts = contacts.map((contact) => ({
       ...contact.toObject(),
       id: contact._id,
       read: contact.isRead,
-      timestamp: contact.createdAt
+      timestamp: contact.createdAt,
     }));
     res.json(mappedContacts);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to load contacts' });
+    res.status(500).json({ error: "Failed to load contacts" });
   }
 });
 
 // Mark contact as read
-app.put('/api/admin/contacts/:id/read', authenticateAdmin, async (req, res) => {
+app.put("/api/admin/contacts/:id/read", authenticateAdmin, async (req, res) => {
   try {
     const contact = await Contact.findByIdAndUpdate(
       req.params.id,
@@ -198,24 +212,24 @@ app.put('/api/admin/contacts/:id/read', authenticateAdmin, async (req, res) => {
       { new: true }
     );
     if (!contact) {
-      return res.status(404).json({ error: 'Contact not found' });
+      return res.status(404).json({ error: "Contact not found" });
     }
-    res.json({ message: 'Contact marked as read' });
+    res.json({ message: "Contact marked as read" });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update contact' });
+    res.status(500).json({ error: "Failed to update contact" });
   }
 });
 
 // Delete contact
-app.delete('/api/admin/contacts/:id', authenticateAdmin, async (req, res) => {
+app.delete("/api/admin/contacts/:id", authenticateAdmin, async (req, res) => {
   try {
     const contact = await Contact.findByIdAndDelete(req.params.id);
     if (!contact) {
-      return res.status(404).json({ error: 'Contact not found' });
+      return res.status(404).json({ error: "Contact not found" });
     }
-    res.json({ message: 'Contact deleted successfully' });
+    res.json({ message: "Contact deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete contact' });
+    res.status(500).json({ error: "Failed to delete contact" });
   }
 });
 
@@ -229,4 +243,9 @@ app.delete('/api/admin/contacts/:id', authenticateAdmin, async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.log(`Port ${PORT} busy. Run: node auto-start.js`);
+    process.exit(1);
+  }
 });
