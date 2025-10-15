@@ -3,8 +3,6 @@ const mongoose = require("mongoose");
 const cloudinary = require("cloudinary").v2;
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const http = require('http');
 const Gallery = require("./models/Gallery");
 
 // Cloudinary Configuration
@@ -16,7 +14,7 @@ cloudinary.config({
 
 const MONGO_URI = "mongodb+srv://vashuuyadav08_db_user:XbhTDJqbX9E1fnOF@photography-portfolio.3xmu9a2.mongodb.net/photography-portfolio?retryWrites=true&w=majority";
 
-async function migrateImages() {
+async function migrateGalleryJson() {
   try {
     await mongoose.connect(MONGO_URI, {
       ssl: true,
@@ -26,17 +24,19 @@ async function migrateImages() {
     });
     console.log("✅ MongoDB Connected");
 
-    const photos = await Gallery.find();
-    console.log(`Found ${photos.length} photos to process`);
+    // Read gallery.json
+    const galleryPath = path.join(__dirname, 'data', 'gallery.json');
+    const galleryData = JSON.parse(fs.readFileSync(galleryPath, 'utf8'));
+    console.log(`Found ${galleryData.length} images in gallery.json`);
 
     let migrated = 0, skipped = 0, failed = 0;
 
-    for (const photo of photos) {
-      console.log(`\nProcessing: ${photo.title}`);
+    for (const item of galleryData) {
+      console.log(`\nProcessing: ${item.title}`);
       
       // Skip if already a Cloudinary URL
-      if (photo.imageUrl.includes('cloudinary.com')) {
-        console.log(`✅ Already on Cloudinary: ${photo.imageUrl}`);
+      if (item.imageUrl.includes('cloudinary.com')) {
+        console.log(`✅ Already on Cloudinary: ${item.imageUrl}`);
         skipped++;
         continue;
       }
@@ -45,14 +45,20 @@ async function migrateImages() {
         let result;
         
         // Check if it's a URL (starts with http/https)
-        if (photo.imageUrl.startsWith('http')) {
-          console.log(`⬇️ Downloading from URL: ${photo.imageUrl}`);
-          result = await cloudinary.uploader.upload(photo.imageUrl, {
+        if (item.imageUrl.startsWith('http')) {
+          console.log(`⬇️ Downloading from URL: ${item.imageUrl}`);
+          result = await cloudinary.uploader.upload(item.imageUrl, {
             folder: "portfolioImages",
           });
         } else {
-          // Handle local file path
-          const localPath = path.join(__dirname, photo.imageUrl);
+          // Handle local file path - convert /uploads/ to actual path
+          let localPath;
+          if (item.imageUrl.startsWith('/uploads/')) {
+            localPath = path.join(__dirname, 'public', item.imageUrl);
+          } else {
+            localPath = path.join(__dirname, item.imageUrl);
+          }
+          
           console.log(`📁 Local path: ${localPath}`);
           
           if (!fs.existsSync(localPath)) {
@@ -67,12 +73,18 @@ async function migrateImages() {
           });
         }
         
-        // Update MongoDB with new URL
-        await Gallery.findByIdAndUpdate(photo._id, { imageUrl: result.secure_url });
+        // Update the item in memory
+        item.imageUrl = result.secure_url;
+        
+        // Check if this item exists in MongoDB and update it
+        const existingPhoto = await Gallery.findOne({ title: item.title });
+        if (existingPhoto) {
+          await Gallery.findByIdAndUpdate(existingPhoto._id, { imageUrl: result.secure_url });
+          console.log(`📝 Updated MongoDB record`);
+        }
         
         console.log(`✅ Migrated successfully!`);
-        console.log(`   Old: ${photo.imageUrl}`);
-        console.log(`   New: ${result.secure_url}`);
+        console.log(`   New URL: ${result.secure_url}`);
         migrated++;
         
       } catch (uploadError) {
@@ -81,8 +93,12 @@ async function migrateImages() {
       }
     }
     
+    // Write updated gallery.json back to file
+    fs.writeFileSync(galleryPath, JSON.stringify(galleryData, null, 2));
+    console.log(`\n📝 Updated gallery.json with new Cloudinary URLs`);
+    
     console.log('\n🎉 Migration Summary:');
-    console.log(`   Total photos: ${photos.length}`);
+    console.log(`   Total images: ${galleryData.length}`);
     console.log(`   ✅ Migrated: ${migrated}`);
     console.log(`   ⏭️ Skipped (already on Cloudinary): ${skipped}`);
     console.log(`   ❌ Failed: ${failed}`);
@@ -94,4 +110,4 @@ async function migrateImages() {
   }
 }
 
-migrateImages();
+migrateGalleryJson();

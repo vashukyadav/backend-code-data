@@ -3,224 +3,224 @@
     "id": 1,
     "title": "Portrait Session",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537032/portfolioImages/go8dsrnwn3p1pdsd90lx.jpg",
     "description": "Professional portrait photography capturing natural expressions"
   },
   {
     "id": 2,
     "title": "Couple Moments",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/couple.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537034/portfolioImages/t7sclafbtty7e29rr6ms.jpg",
     "description": "Intimate couple portrait session in natural lighting"
   },
   {
     "id": 3,
     "title": "Wedding Ceremony",
     "category": "WEDDING",
-    "imageUrl": "/uploads/wedding.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537040/portfolioImages/geuf5rp8elfiuax35hq9.jpg",
     "description": "Beautiful wedding ceremony moments captured"
   },
   {
     "id": 5,
     "title": "Black & White Art",
     "category": "MONOCHROME",
-    "imageUrl": "/uploads/monochrome.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537043/portfolioImages/uetpiu4rb1jdtvjtwmek.jpg",
     "description": "Artistic monochrome photography"
   },
   {
     "id": 6,
     "title": "Fashion Editorial",
     "category": "EDITORIAL",
-    "imageUrl": "/uploads/editorial.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537045/portfolioImages/u27aqyd18anj20cdegyc.jpg",
     "description": "High-fashion editorial photography session"
   },
   {
     "id": 7,
     "title": "Pre Wedding Shoot",
     "category": "PRE WEDDING",
-    "imageUrl": "/uploads/prewedding.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537047/portfolioImages/qaykxs5natfbytsbgu5i.jpg",
     "description": "Romantic pre-wedding photography session"
   },
   {
     "id": 8,
     "title": "Classic Portrait",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-classic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537049/portfolioImages/jcwwamrcywgzlduopwqk.jpg",
     "description": "Timeless classic portrait with elegant lighting and composition"
   },
   {
     "id": 9,
     "title": "Artistic Vision",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-artistic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537052/portfolioImages/zkpidck37x0xbwlt31mf.jpg",
     "description": "Creative artistic portrait with unique perspective and mood"
   },
   {
     "id": 10,
     "title": "Candid Moments",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-candid.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537055/portfolioImages/s7gifjsn00pp3fqyifnc.jpg",
     "description": "Natural candid portrait capturing authentic emotions"
   },
   {
     "id": 11,
     "title": "Dramatic Light",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-dramatic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537058/portfolioImages/vctc637o8bkschk3xrka.jpg",
     "description": "Bold dramatic portrait with striking light and shadow play"
   },
   {
     "id": 12,
     "title": "Natural Beauty",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-natural.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537061/portfolioImages/agkpembvrsgd0teniq5y.jpg",
     "description": "Soft natural light portrait showcasing genuine beauty"
   },
   {
     "id": 13,
     "title": "Studio Perfection",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-studio.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537063/portfolioImages/gylstwv3ke6vjnwsonxi.jpg",
     "description": "Professional studio portrait with perfect lighting setup"
   },
   {
     "id": 14,
     "title": "Vintage Charm",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-vintage.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537066/portfolioImages/wlkx6fdaxd1veh0iivyc.jpg",
     "description": "Nostalgic vintage-style portrait with timeless appeal"
   },
   {
     "id": 15,
     "title": "Modern Edge",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-modern.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537068/portfolioImages/qsbfhgkejaok025rbxfd.jpg",
     "description": "Contemporary modern portrait with clean lines and bold composition"
   },
   {
     "id": 16,
     "title": "Lifestyle Story",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-lifestyle.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537071/portfolioImages/uewnym4nwq2za45cdqyi.jpg",
     "description": "Authentic lifestyle portrait capturing real moments and personality"
   },
   {
     "id": 17,
     "title": "Fashion Forward",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/portrait-fashion.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537074/portfolioImages/rxtwfrlbtxnmlqb7zesm.jpg",
     "description": "High-fashion portrait with editorial styling and dramatic poses"
   },
   {
     "id": 18,
     "title": "Romantic Connection",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/couple-romantic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537076/portfolioImages/pfcnwatyemsdhuskynk6.jpg",
     "description": "Intimate romantic couple portrait with soft lighting"
   },
   {
     "id": 19,
     "title": "Candid Love",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/couple-candid.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537079/portfolioImages/ywh7plhbjghnznz1gfwg.jpg",
     "description": "Natural candid moments between couples"
   },
   {
     "id": 20,
     "title": "Outdoor Romance",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/couple-outdoor.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537080/portfolioImages/xmecvrnz3qdekur7og8v.jpg",
     "description": "Beautiful outdoor couple session in natural setting"
   },
   {
     "id": 21,
     "title": "Studio Elegance",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/couple-studio.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537084/portfolioImages/yohatsj4rjwfygsfsnon.jpg",
     "description": "Professional studio couple portrait with elegant styling"
   },
   {
     "id": 22,
     "title": "Sacred Vows",
     "category": "WEDDING",
-    "imageUrl": "/uploads/wedding-ceremony.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537088/portfolioImages/lp8nxc3meuckwe7nvdgg.jpg",
     "description": "Beautiful wedding ceremony capturing sacred moments"
   },
   {
     "id": 23,
     "title": "Reception Joy",
     "category": "WEDDING",
-    "imageUrl": "/uploads/wedding-reception.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537091/portfolioImages/p1kosuwawzyfklyl1lk1.jpg",
     "description": "Joyful wedding reception moments and celebrations"
   },
   {
     "id": 24,
     "title": "Bridal Beauty",
     "category": "WEDDING",
-    "imageUrl": "/uploads/wedding-bridal.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537093/portfolioImages/ksmifawjcw7iq76oesuh.jpg",
     "description": "Stunning bridal portraits on the wedding day"
   },
   {
     "id": 25,
     "title": "Party Vibes",
     "category": "COCKTAIL",
-    "imageUrl": "/uploads/cocktail-party.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537095/portfolioImages/muz0pxtd4cfnyls9r06h.jpg",
     "description": "Vibrant cocktail party atmosphere and energy"
   },
   {
     "id": 26,
     "title": "Elegant Soirée",
     "category": "COCKTAIL",
-    "imageUrl": "/uploads/cocktail-elegant.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537099/portfolioImages/ffcst281mfm88y2cpcjd.jpg",
     "description": "Sophisticated elegant cocktail event photography"
   },
   {
     "id": 27,
     "title": "Artistic Expression",
     "category": "MONOCHROME",
-    "imageUrl": "/uploads/monochrome-artistic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537102/portfolioImages/ve7ftzhx2ne4fzn1gasy.jpg",
     "description": "Creative artistic black and white photography"
   },
   {
     "id": 28,
     "title": "Classic Monochrome",
     "category": "MONOCHROME",
-    "imageUrl": "/uploads/monochrome-classic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537106/portfolioImages/cafx1uqzvb8aokb4rp6t.jpg",
     "description": "Timeless classic black and white portrait"
   },
   {
     "id": 29,
     "title": "Fashion Statement",
     "category": "EDITORIAL",
-    "imageUrl": "/uploads/editorial-fashion.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537109/portfolioImages/tetzmf1qgzxrqep8vryf.jpg",
     "description": "Bold fashion editorial with striking composition"
   },
   {
     "id": 30,
     "title": "Modern Editorial",
     "category": "EDITORIAL",
-    "imageUrl": "/uploads/editorial-modern.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537112/portfolioImages/k6iwdslzy3tunjskmt4y.jpg",
     "description": "Contemporary modern editorial photography"
   },
   {
     "id": 31,
     "title": "Romantic Journey",
     "category": "PRE WEDDING",
-    "imageUrl": "/uploads/prewedding-romantic.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537115/portfolioImages/jzhemsyyexwxnc7wp2fo.jpg",
     "description": "Romantic pre-wedding session capturing love story"
   },
   {
     "id": 32,
     "title": "Nature's Backdrop",
     "category": "PRE WEDDING",
-    "imageUrl": "/uploads/prewedding-outdoor.jpg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537117/portfolioImages/ad4kn7bzyplgzcqamzr6.jpg",
     "description": "Beautiful outdoor pre-wedding shoot in natural setting"
   },
   {
     "id": 33,
     "title": "MAA REVA",
     "category": "PORTRAIT",
-    "imageUrl": "/uploads/1759915466916-image.png",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537119/portfolioImages/zexap9fdnqtlcunhbpub.png",
     "description": "SAMITI"
   },
   {
@@ -234,7 +234,7 @@
     "id": 35,
     "title": "man",
     "category": "COUPLE PORTRAIT",
-    "imageUrl": "/uploads/1760029644525-signal-2025-08-09-213215.jpeg",
+    "imageUrl": "https://res.cloudinary.com/dixfhnekl/image/upload/v1760537122/portfolioImages/vqpy3dee7zejcn1owox9.jpg",
     "description": "man"
   }
 ]
