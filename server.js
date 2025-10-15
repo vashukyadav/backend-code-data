@@ -10,6 +10,7 @@ const multer = require("multer");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
 const Gallery = require("./models/Gallery");
 const Contact = require("./models/Contact");
 
@@ -17,6 +18,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 const ADMIN_PASSWORD = "admin123";
+
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // MongoDB Connection
 mongoose
@@ -48,7 +56,6 @@ app.use(cors({
 app.options('*', cors());
 
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 
 // Multer setup
 const storage = multer.diskStorage({
@@ -123,8 +130,10 @@ app.post("/api/admin/login", (req, res) => {
 app.post("/api/admin/gallery", upload.single("image"), async (req, res) => {
   try {
     const { title, category, description } = req.body;
-    const imageUrl = req.file.path;
-    const gallery = new Gallery({ title, category, description, imageUrl });
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "portfolioImages",
+    });
+    const gallery = new Gallery({ title, category, description, imageUrl: result.secure_url });
     await gallery.save();
     res.status(201).json(gallery);
   } catch (error) {
@@ -137,9 +146,11 @@ app.delete("/api/admin/gallery/:id", authenticateAdmin, async (req, res) => {
     const photo = await Gallery.findById(req.params.id);
     if (!photo) return res.status(404).json({ error: "Photo not found" });
 
-    const imagePath = path.join(__dirname, "public", photo.imageUrl);
-    const fs = require("fs");
-    if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
+    // Extract public_id from Cloudinary URL for deletion
+    if (photo.imageUrl.includes('cloudinary.com')) {
+      const publicId = photo.imageUrl.split('/').slice(-2).join('/').split('.')[0];
+      await cloudinary.uploader.destroy(publicId);
+    }
 
     await Gallery.findByIdAndDelete(req.params.id);
     res.json({ message: "Photo deleted successfully" });
