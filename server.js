@@ -275,6 +275,12 @@ app.delete("/api/admin/contacts/:id", authenticateAdmin, async (req, res) => {
   }
 });
 
+// Catch-all route for debugging
+app.use('*', (req, res) => {
+  console.log(`Unmatched route: ${req.method} ${req.originalUrl}`);
+  res.status(404).json({ error: 'Route not found' });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
