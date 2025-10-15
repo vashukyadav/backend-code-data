@@ -126,6 +126,62 @@ app.post("/api/admin/login", (req, res) => {
   }
 });
 
+// Migration endpoint to upload existing images to Cloudinary
+app.post("/api/admin/migrate-images", authenticateAdmin, async (req, res) => {
+  try {
+    const fs = require('fs');
+    const photos = await Gallery.find();
+    const results = [];
+    
+    for (const photo of photos) {
+      // Skip if already a Cloudinary URL
+      if (photo.imageUrl.includes('cloudinary.com')) {
+        results.push({ id: photo._id, status: 'already_migrated', url: photo.imageUrl });
+        continue;
+      }
+      
+      const localPath = path.join(__dirname, photo.imageUrl);
+      
+      // Check if local file exists
+      if (!fs.existsSync(localPath)) {
+        results.push({ id: photo._id, status: 'file_not_found', path: localPath });
+        continue;
+      }
+      
+      try {
+        // Upload to Cloudinary
+        const result = await cloudinary.uploader.upload(localPath, {
+          folder: "portfolioImages",
+        });
+        
+        // Update MongoDB with new URL
+        await Gallery.findByIdAndUpdate(photo._id, { imageUrl: result.secure_url });
+        
+        results.push({ 
+          id: photo._id, 
+          status: 'migrated', 
+          oldUrl: photo.imageUrl, 
+          newUrl: result.secure_url 
+        });
+      } catch (uploadError) {
+        results.push({ 
+          id: photo._id, 
+          status: 'upload_failed', 
+          error: uploadError.message 
+        });
+      }
+    }
+    
+    res.json({ 
+      message: 'Migration completed', 
+      total: photos.length,
+      results 
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Migration failed: ' + error.message });
+  }
+});
+
 // Admin gallery CRUD
 app.post("/api/admin/gallery", upload.single("image"), async (req, res) => {
   try {
