@@ -140,19 +140,27 @@ app.post("/api/admin/migrate-images", authenticateAdmin, async (req, res) => {
         continue;
       }
       
-      const localPath = path.join(__dirname, photo.imageUrl);
-      
-      // Check if local file exists
-      if (!fs.existsSync(localPath)) {
-        results.push({ id: photo._id, status: 'file_not_found', path: localPath });
-        continue;
-      }
-      
       try {
-        // Upload to Cloudinary
-        const result = await cloudinary.uploader.upload(localPath, {
-          folder: "portfolioImages",
-        });
+        let result;
+        
+        // Check if it's a URL (starts with http/https)
+        if (photo.imageUrl.startsWith('http')) {
+          result = await cloudinary.uploader.upload(photo.imageUrl, {
+            folder: "portfolioImages",
+          });
+        } else {
+          // Handle local file path
+          const localPath = path.join(__dirname, photo.imageUrl);
+          
+          if (!fs.existsSync(localPath)) {
+            results.push({ id: photo._id, status: 'file_not_found', path: localPath });
+            continue;
+          }
+          
+          result = await cloudinary.uploader.upload(localPath, {
+            folder: "portfolioImages",
+          });
+        }
         
         // Update MongoDB with new URL
         await Gallery.findByIdAndUpdate(photo._id, { imageUrl: result.secure_url });
