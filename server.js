@@ -42,7 +42,7 @@ app.use(cors({
   origin: [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://frontend-code-data.vercel.app",
+    "https://tarunsahu-portfolio.vercel.app",
     "https://backend-code-data-3.onrender.com",
     
   ],
