@@ -43,8 +43,7 @@ app.use(cors({
     "http://localhost:3000",
     "http://localhost:3001",
     "https://tarunsahu-portfolio.vercel.app",
-    "https://backend-code-data-3.onrender.com",
-    
+    "https://tarunsahu-portfolio.vercel.app/",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
